@@ -4,12 +4,8 @@ import type { ButtonHTMLAttributes } from 'vue';
 
 type _ButtonVariants = RecipeVariant<typeof buttonRecipe>;
 type _PartialButtonVariants = Partial<_ButtonVariants>;
-type _ButtonHTMLAttrs = ButtonHTMLAttributes;
 
-export type ButtonAttrs = _ButtonHTMLAttrs & _PartialButtonVariants;
-
-export interface ButtonProps
-  extends /* @vue-ignore */ _ButtonHTMLAttrs,
-    /* @vue-ignore */ _PartialButtonVariants {
+export type ButtonAttrs = ButtonHTMLAttributes & _PartialButtonVariants;
+export interface ButtonProps extends /* @vue-ignore */ ButtonAttrs {
   loading?: boolean;
 }
