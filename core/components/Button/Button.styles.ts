@@ -59,5 +59,9 @@ export const buttonRecipe = cva({
         fontSize: 'lg'
       }
     }
+  },
+  defaultVariants: {
+    variant: 'primary',
+    size: 'md'
   }
 });

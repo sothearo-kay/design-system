@@ -8,7 +8,7 @@ defineOptions({
 
 defineProps<ButtonProps>();
 
-const { variant, size, ...buttonAttrs } = useAttrs() as unknown as ButtonAttrs;
+const { variant, size, ...buttonAttrs } = useAttrs() as ButtonAttrs;
 
 const buttonStyles = computed(() => buttonRecipe({ variant, size }));
 </script>
