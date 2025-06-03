@@ -15,8 +15,22 @@ const config = defineNuxtConfig({
   }
 });
 
+/**
+ * Modules
+ */
 const modules = defineNuxtConfig({
   modules: []
+});
+
+/**
+ * Build
+ */
+const build = defineNuxtConfig({
+  pages: true,
+
+  typescript: {
+    includeWorkspace: true
+  }
 });
 
 /**
@@ -31,7 +45,26 @@ const app = defineNuxtConfig({
     }
   },
 
-  css: [resolve('./assets/css/main.css')]
+  components: {
+    dirs: [
+      {
+        path: 'components',
+        pathPrefix: false
+      }
+    ]
+  },
+
+  css: [resolve('./assets/css/main.css')],
+
+  alias: {
+    'styled-system': resolve('../styled-system')
+  },
+
+  postcss: {
+    plugins: {
+      '@pandacss/dev/postcss': {}
+    }
+  }
 });
 
-export default defu(config, modules, app);
+export default defu(config, modules, build, app);

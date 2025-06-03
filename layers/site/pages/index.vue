@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { css } from 'styled-system/css';
+</script>
+
 <template>
-  <h1>Hello from homepage</h1>
+  <div :class="css({ fontSize: '5xl', fontWeight: 'bold' })">Hello 🐼!</div>
 </template>
