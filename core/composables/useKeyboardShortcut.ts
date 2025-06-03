@@ -1,1 +1,1 @@
-export const useKeyboardShortcut = () => {};
+export function useKeyboardShortcut() {}

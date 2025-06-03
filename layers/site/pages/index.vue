@@ -1,7 +1,7 @@
-<script setup lang="ts">
-import { css } from 'styled-system/css';
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div :class="css({ fontSize: '5xl', fontWeight: 'bold' })">Hello 🐼!</div>
+  <div>
+    <Button variant="primary" size="md">click me</Button>
+  </div>
 </template>
