@@ -7,10 +7,10 @@ export default createConfigForNuxt()
   .append(
     {
       rules: {
-        quotes: ['error', 'single'],
+        quotes: ['error', 'single', { allowTemplateLiterals: true }],
         'quote-props': ['error', 'as-needed'],
         'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-        indent: ['error', 2]
+        indent: ['error', 2, { SwitchCase: 1 }]
       }
     },
     {
