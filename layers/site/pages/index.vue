@@ -1,7 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+useKeyboardShortcut('ctrl+k', () => console.log('Search'));
+</script>
 
 <template>
-  <div>
-    <Button variant="primary" size="md">click me</Button>
-  </div>
+  <Heading as="h1">Homepage</Heading>
 </template>
