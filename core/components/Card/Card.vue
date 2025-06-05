@@ -8,7 +8,6 @@ defineOptions({
 });
 
 const { as = 'div', css: cssOverride } = defineProps<CardProps>();
-
 const { variant, size, interactive, ...htmlAttrs } = useAttrs() as CardAttrs;
 
 const cardStyles = computed(() =>

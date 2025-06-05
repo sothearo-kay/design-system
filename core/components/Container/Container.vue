@@ -8,7 +8,6 @@ defineOptions({
 });
 
 const { as = 'div', css: cssOverride } = defineProps<ContainerProps>();
-
 const { size, center, padding, ...htmlAttrs } = useAttrs() as ContainerAttrs;
 
 const containerStyles = computed(() =>

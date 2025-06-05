@@ -8,7 +8,6 @@ defineOptions({
 });
 
 const { as = 'p', color, css: cssOverride } = defineProps<TextProps>();
-
 const { size, weight, align, truncate, wrap, ...htmlAttrs } = useAttrs() as TextAttrs;
 
 const textStyles = computed(() =>
