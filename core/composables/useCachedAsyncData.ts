@@ -1,6 +1,11 @@
 import type { AsyncDataOptions } from '#app';
 
-interface CachedAsyncDataOptions<T> extends AsyncDataOptions<T> {
+interface CachedData<T> {
+  data: T;
+  _timestamp: number;
+}
+
+interface CachedAsyncDataOptions<T> extends Omit<AsyncDataOptions<CachedData<T>>, 'getCachedData'> {
   expiry?: number;
   skipCache?: boolean;
 }
@@ -10,30 +15,28 @@ export const useCachedAsyncData = <T>(
   handler: () => Promise<T>,
   options: CachedAsyncDataOptions<T> = {}
 ) => {
-  const {
-    expiry = 5 * 60 * 1000,
-    skipCache = false,
-    transform: userTransform,
-    ...asyncDataOptions
-  } = options;
+  const { expiry = 5 * 60 * 1000, skipCache = false, ...asyncDataOptions } = options;
 
-  return useAsyncData(key, handler, {
-    ...asyncDataOptions,
-    getCachedData(key, nuxtApp) {
-      if (skipCache) return null;
-
-      const cached = nuxtApp.payload.data[key];
-      if (!cached) return null;
-
-      const age = Date.now() - cached._timestamp;
-      return age > expiry ? null : cached.data;
-    },
-    transform(data: T) {
-      const transformedData = userTransform ? userTransform(data) : data;
+  return useAsyncData<CachedData<T>>(
+    key,
+    async () => {
+      const data = await handler();
       return {
-        ...transformedData,
+        data,
         _timestamp: Date.now()
       };
+    },
+    {
+      ...asyncDataOptions,
+      getCachedData(key, nuxtApp) {
+        if (skipCache) return undefined;
+
+        const cached = nuxtApp.payload.data[key] as CachedData<T> | undefined;
+        if (!cached || !cached._timestamp) return undefined;
+
+        const age = Date.now() - cached._timestamp;
+        return age > expiry ? undefined : cached;
+      }
     }
-  });
+  );
 };
