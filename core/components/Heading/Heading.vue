@@ -7,14 +7,14 @@ defineOptions({
   inheritAttrs: false
 });
 
-const { as = 'h1', color = 'inherit' } = defineProps<HeadingProps>();
-
+const { as = 'h1', color = 'inherit', css: cssOverride } = defineProps<HeadingProps>();
 const { size, weight } = useAttrs() as HeadingAttrs;
 
 const headingStyles = computed(() => {
   const baseStyles = headingRecipe({ size, weight });
   const additionalStyles = css({
-    color
+    color,
+    ...cssOverride
   });
 
   return `${baseStyles} ${additionalStyles}`;

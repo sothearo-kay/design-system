@@ -1,4 +1,4 @@
-import type { RecipeVariant } from '~/styled-system/types';
+import type { RecipeVariant, SystemStyleObject } from '~/styled-system/types';
 import type { gridRecipe, gridItemRecipe } from './Grid.styles';
 import type { HTMLAttributes } from 'vue';
 
@@ -8,6 +8,7 @@ export type GridAttrs = HTMLAttributes & _PartialGridVariants;
 
 export interface GridProps /* @vue-ignore */ {
   as?: 'div' | 'section' | 'article' | 'main' | 'aside' | 'nav';
+  css?: SystemStyleObject;
 }
 
 type _GridItemVariants = RecipeVariant<typeof gridItemRecipe>;
@@ -16,4 +17,5 @@ export type GridItemAttrs = HTMLAttributes & _PartialGridItemVariants;
 
 export interface GridItemProps extends /* @vue-ignore */ GridItemAttrs {
   as?: 'div' | 'section' | 'article' | 'aside' | 'span';
+  css?: SystemStyleObject;
 }
