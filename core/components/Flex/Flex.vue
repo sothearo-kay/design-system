@@ -21,7 +21,7 @@ const flexStyles = computed(() =>
       justifyContent,
       wrap
     }),
-    css(cssOverride)
+    css({ ...cssOverride })
   )
 );
 </script>

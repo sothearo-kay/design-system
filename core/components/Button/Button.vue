@@ -10,9 +10,7 @@ defineOptions({
 const { css: cssOverride } = defineProps<ButtonProps>();
 const { variant, size, ...buttonAttrs } = useAttrs() as ButtonAttrs;
 
-const buttonStyles = computed(() =>
-  cx(buttonRecipe({ variant, size }), cssOverride ? css(cssOverride) : undefined)
-);
+const buttonStyles = computed(() => cx(buttonRecipe({ variant, size }), css({ ...cssOverride })));
 </script>
 
 <template>
